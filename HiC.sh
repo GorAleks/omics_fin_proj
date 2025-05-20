@@ -82,3 +82,7 @@ awk 'BEGIN {FS="\t"; OFS="\t"} {print $1, $2, $3, $4, $5, $6}' NeuNpo_loop.tsv >
 cd ~
 cooler show Project/mcool_file/NeuNpo.mcool::resolutions/50000 chr2:0-10000000 -o 'NeuNpo.png'
 cooler show Project/mcool_file/Neuron.mcool::resolutions/50000 chr2:0-10000000 -o 'Neuron.png'
+cooler show Project/mcool_file/NeuNpo.mcool::resolutions/100000 chr21:15000000-46709983 -o 'NeuNpo.png'
+cooler show Project/mcool_file/Neuron.mcool::resolutions/100000 chr21:15000000-46709983 -o 'Neuron.png'
+awk 'BEGIN{OFS="\t"} {if(NR>1) print prev[1], prev[2], $2, "TAD_" NR; prev[1]=$1; prev[2]=$3} END{print prev[1], prev[2], $3, "TAD_" NR}' Project/m25000/NeuNpo_tad.bed > NeuNpo_tads.bed
+awk 'BEGIN{OFS="\t"} {if(NR>1) print prev[1], prev[2], $2, "TAD_" NR; prev[1]=$1; prev[2]=$3} END{print prev[1], prev[2], $3, "TAD_" NR}' Project/m25000/Neuron_tad.bed > Neuron_tads.bed
